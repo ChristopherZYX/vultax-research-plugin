@@ -66,6 +66,12 @@ The [research access page](https://vultax.com/research-access) also provides Mar
 
 The public GitHub release is available independently of marketplace review. It does not imply acceptance into OpenAI's or Anthropic's curated directory.
 
+## MCP Registry
+
+Vultax Research is published in the [official MCP Registry](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.ChristopherZYX%2Fvultax-research/versions/latest) as `io.github.ChristopherZYX/vultax-research`. The entry points to the same public HTTPS service. Registry inclusion makes the connection metadata available to clients and aggregators; it does not automatically install the plugin in anyone's account.
+
+Maintainers can publish a new metadata version through the manually triggered **Publish Vultax to MCP Registry** GitHub workflow. It uses GitHub OIDC and a pinned, checksum-verified official publisher. Update `server.json` before publishing a new version.
+
 ## Validation
 
 The MCP service runs on Vultax's infrastructure; users do not need to run a local server. The Node dependency below is for maintainers verifying the public endpoint:
