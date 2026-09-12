@@ -1,0 +1,11 @@
+{
+  "name": "vultax-research",
+  "version": "1.0.0",
+  "description": "Search and cite Vultax's published crypto and prediction-market research and retrieve its datasets.",
+  "author": { "name": "OmniOS OÜ", "url": "https://vultax.com/about" },
+  "homepage": "https://vultax.com/research-access",
+  "repository": "https://github.com/ChristopherZYX/vultax-research-plugin",
+  "keywords": ["research", "prediction-markets", "crypto", "polymarket", "datasets"],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json"
+}
