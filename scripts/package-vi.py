@@ -17,7 +17,13 @@ assert len(paths) == len(set(paths))
 archive = out / f'vultax-vi-{version}.zip'
 with zipfile.ZipFile(archive, 'w', zipfile.ZIP_DEFLATED) as z:
     for path in sorted(paths):
-        z.write(path, path.relative_to(root).as_posix())
+        name = path.relative_to(root).as_posix()
+        if name == '.codex-plugin/plugin.json':
+            manifest = json.loads(path.read_text())
+            manifest['version'] = version
+            z.writestr(name, json.dumps(manifest, indent=2) + '\n')
+        else:
+            z.write(path, name)
 
 # MCPB is self-contained: only the stdio runtime, assets and production deps.
 bundle = out / f'vultax-vi-{version}.mcpb'
