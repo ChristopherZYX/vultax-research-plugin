@@ -1,0 +1,13 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.ChristopherZYX/vultax-research",
+  "title": "Vultax Research",
+  "description": "Search published crypto and prediction-market studies and retrieve source-labelled datasets.",
+  "version": "1.0.0",
+  "websiteUrl": "https://vultax.com/research-access",
+  "repository": {
+    "url": "https://github.com/ChristopherZYX/vultax-research-plugin",
+    "source": "github"
+  },
+  "remotes": [{ "type": "streamable-http", "url": "https://vultax.com/mcp" }]
+}
