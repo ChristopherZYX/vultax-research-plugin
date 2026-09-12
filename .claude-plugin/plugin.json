@@ -1,9 +1,9 @@
 {
   "name": "vultax-research",
-  "version": "1.0.0",
-  "description": "Search and cite Vultax's published crypto and prediction-market research and retrieve its datasets.",
+  "version": "1.1.0",
+  "description": "Vi Assistant by Vultax: prediction-market evidence, hypothetical scenarios, and published research.",
   "author": { "name": "OmniOS OÜ", "url": "https://vultax.com/about" },
-  "homepage": "https://vultax.com/research-access",
+  "homepage": "https://vultax.com/vi-mcp",
   "repository": "https://github.com/ChristopherZYX/vultax-research-plugin",
   "keywords": ["research", "prediction-markets", "crypto", "polymarket", "datasets"],
   "skills": "./skills/",

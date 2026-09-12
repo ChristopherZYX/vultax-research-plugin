@@ -1,0 +1,19 @@
+{
+  "manifest_version": "0.3",
+  "name": "vultax-vi",
+  "display_name": "Vi Assistant by Vultax",
+  "version": "1.1.0",
+  "description": "Prediction-market evidence, hypothetical price scenarios and published Vultax research.",
+  "author": { "name": "OmniOS OÜ", "url": "https://vultax.com/about" },
+  "homepage": "https://vultax.com/vi-mcp",
+  "documentation": "https://github.com/ChristopherZYX/vultax-research-plugin",
+  "support": "https://github.com/ChristopherZYX/vultax-research-plugin/issues",
+  "icon": "assets/icon.png",
+  "repository": { "type": "git", "url": "https://github.com/ChristopherZYX/vultax-research-plugin.git" },
+  "server": { "type": "node", "entry_point": "src/stdio.mjs", "mcp_config": { "command": "node", "args": ["${__dirname}/src/stdio.mjs"] } },
+  "tools_generated": true,
+  "keywords": ["prediction-markets", "polymarket", "research", "scenarios", "vi", "vultax"],
+  "license": "MIT",
+  "privacy_policies": ["https://vultax.com/legal/privacy"],
+  "compatibility": { "platforms": ["darwin", "win32", "linux"], "runtimes": { "node": ">=20" } }
+}

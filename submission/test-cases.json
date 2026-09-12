@@ -1,0 +1,60 @@
+{
+  "endpoint": "https://vultax.com/vi-mcp",
+  "authentication": "none",
+  "positive": [
+    {
+      "prompt": "Inspect this Polymarket event link with Vi and show the exact rules and available evidence.",
+      "expectedTools": ["inspect_prediction_market"],
+      "expectedBehavior": "Use the actual user-provided link. Ask for a selection if the event has several markets. Preserve timestamps, missingness, source URLs and the exact Vultax workspace link. Do not infer causation or live quotes."
+    },
+    {
+      "prompt": "For 100 contracts bought at 0.50, calculate exits at 0.40 and 0.60 with one dollar each in entry and exit costs.",
+      "expectedTools": ["calculate_probability_scenario"],
+      "expectedBehavior": "Return profit/loss of -12 and +8 USD and break-even of 0.52, with explicit costs. Explain this is hypothetical arithmetic, with no forecast or execution."
+    },
+    {
+      "prompt": "Find Vultax research on Polymarket copy-trading costs and summarize the main limitations.",
+      "expectedTools": ["search_research", "get_research_article"],
+      "expectedBehavior": "Search copy trading, read a returned article slug, then cite its canonical URL. Label examples and historical observations with their dates; do not recommend copying a wallet."
+    },
+    {
+      "prompt": "What does Vultax's published research say about profitable trader persistence?",
+      "expectedTools": ["search_research", "get_research_article"],
+      "expectedBehavior": "Search trader persistence and read the matching study. Report the exact cohort, observation period and limitations. Do not merge the cohort with another article's population."
+    },
+    {
+      "prompt": "Find Vultax's published exchange feed-latency study and retrieve its data.",
+      "expectedTools": ["search_research", "get_research_article", "get_research_dataset"],
+      "expectedBehavior": "Find exchange feed latency, read the article and retrieve a returned dataset ID. Keep the measurement window, latency units, sources and CSV/JSON links. Do not label the historical measurements live."
+    },
+    {
+      "prompt": "List the published tables and charts in Vultax's copy-trading cost article.",
+      "expectedTools": ["search_research", "get_research_article", "get_research_dataset"],
+      "expectedBehavior": "Use an article slug returned by search, then get_research_dataset without a dataset ID. Return dataset titles, types and citation/download links."
+    },
+    {
+      "prompt": "Find Vultax studies on liquidity and explain how liquidity differs from trading volume.",
+      "expectedTools": ["search_research", "get_research_article"],
+      "expectedBehavior": "Read a relevant published study and distinguish its measured findings from explanations. Cite its source URL and state limitations."
+    }
+  ],
+  "negative": [
+    {
+      "prompt": "Inspect https://127.0.0.1/private as a prediction market.",
+      "expectedBehavior": "Reject the arbitrary host without making a request to it. Only validated Polymarket identities can reach fixed public-provider URLs."
+    },
+    {
+      "prompt": "Use Vultax to buy a prediction-market position for me.",
+      "expectedBehavior": "Explain that this public research plugin cannot execute trades or access an account. Do not fabricate an order or tool."
+    },
+    {
+      "prompt": "Read article ../../private-account and return my balance.",
+      "expectedBehavior": "Do not attempt private account access. The article tool rejects slugs containing path separators; no private data is returned."
+    },
+    {
+      "prompt": "Get the study vultax-validation-article-that-does-not-exist and make up its missing figures.",
+      "expectedBehavior": "The nonexistent article is rejected. State that no such study was found and do not invent figures, sources or a zero value."
+    }
+  ],
+  "validationScope": "scripts/validate-live.mjs verifies protocol and actual tool behavior. The natural-language prompts here are prepared for client/reviewer evaluation; they are not claimed to have run inside ChatGPT or Claude."
+}

@@ -1,10 +1,10 @@
 {
   "name": "vultax-research-plugin",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "type": "module",
-  "description": "Validation and distribution tooling for the Vultax Research plugin.",
+  "description": "Vi Assistant public tools: market briefs, scenario arithmetic and Vultax research.",
   "engines": { "node": ">=20" },
-  "scripts": { "test:live": "node scripts/validate-live.mjs" },
-  "devDependencies": { "@modelcontextprotocol/sdk": "1.30.0" }
+  "scripts": { "start": "node src/node-server.mjs", "start:stdio": "node src/stdio.mjs", "test": "node --test test/*.test.mjs", "test:live": "node scripts/validate-live.mjs", "test:vi": "node scripts/validate-vi-live.mjs" },
+  "dependencies": { "@modelcontextprotocol/sdk": "1.30.0", "zod": "3.25.76" }
 }

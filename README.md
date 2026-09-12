@@ -1,88 +1,107 @@
-# Vultax Research
+# Vi Assistant by Vultax
 
-Search and cite published crypto and prediction-market research. Retrieve complete articles, tables and chart data with source URLs, dates, units and downloadable CSV/JSON.
+Bring a Polymarket link to your assistant. Inspect the exact market and its resolution rules, calculate explicit price scenarios, and support your analysis with published Vultax research.
 
-[Download the plugin package](https://github.com/ChristopherZYX/vultax-research-plugin/releases/latest) · [Browse public research](https://vultax.com/research) · [Connection documentation](https://vultax.com/research-access)
+[Try the public demo](https://vultax.com/vi-mcp) · [Download v1.1.0](https://github.com/ChristopherZYX/vultax-research-plugin/releases/tag/v1.1.0) · [MCP Registry](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.ChristopherZYX%2Fvultax-research/versions/latest)
 
-**Public MCP URL:** `https://vultax.com/mcp`  
-**Transport:** Streamable HTTP  
-**Authentication:** None. These tools expose free, public research only.
+**MCP endpoint:** `https://vultax.com/vi-mcp` · Streamable HTTP · No API key
 
-The service is operated by OmniOS OÜ, the publisher of [Vultax](https://vultax.com). Published datasets are historical observations or stated calculations, not live quotes. This connection does not provide private account access, automated alerts, personalized investment advice or trade execution.
-
-## ChatGPT and Codex
-
-This package contains `.codex-plugin/plugin.json`, a remote MCP connection and a research skill. Install the package through a configured local or public plugin marketplace. A local installation does not create a public directory listing.
-
-To connect the public tools directly from the Codex CLI:
-
-```sh
-codex mcp add vultax-research --url https://vultax.com/mcp
-```
-
-Start a new Codex session after adding the connection. Use either this direct MCP connection or the packaged plugin to avoid duplicate tools.
-
-For ChatGPT custom connections, add `https://vultax.com/mcp` as a remote MCP server with no authentication where the account supports custom connections. Public directory submission uses the [OpenAI plugin portal](https://platform.openai.com/plugins) and requires publisher verification and review.
-
-## Claude and Claude Code
-
-In Claude's connector settings, add a custom connector named **Vultax Research** with URL `https://vultax.com/mcp`.
-
-For Claude Code:
-
-```sh
-claude mcp add --transport http vultax-research https://vultax.com/mcp
-```
-
-This archive also contains a native `.claude-plugin/plugin.json`; it shares the same research skill and MCP configuration. A downloaded, extracted package can be tested with:
-
-```sh
-claude --plugin-dir /absolute/path/to/vultax-research
-```
-
-## Cursor
-
-Merge `connections/cursor.mcp.json` into your global `~/.cursor/mcp.json` or the project's `.cursor/mcp.json`. Preserve any existing server entries.
-
-## VS Code / GitHub Copilot
-
-Merge `connections/vscode.mcp.json` into the project's `.vscode/mcp.json`, or use **MCP: Add Server** with HTTP URL `https://vultax.com/mcp`. Preserve any existing server entries. This is a remote MCP configuration, not an installed VS Code extension.
-
-## Workflows
-
-- “Find research about the costs of copying Polymarket traders.”
-- “What evidence supports persistence in trader performance? State the population and dates.”
-- “Get the exchange feed-latency dataset and compare the reported measurements.”
-
-Tools:
-
-| Tool | Purpose |
+| Tool | What it does |
 | --- | --- |
-| `search_research` | Search published studies; returns stable article IDs and citation URLs. |
-| `get_research_article` | Read the complete published article and its metadata. |
-| `get_research_dataset` | Retrieve one or all published datasets from an article. |
+| `inspect_prediction_market` | Resolves an exact Polymarket event/market, returns rules, outcome prices, spread, reported volume/liquidity, source times and a bounded trade sample. Asks for selection when an event has several markets. |
+| `calculate_probability_scenario` | Computes hypothetical profit/loss and break-even for explicit contract quantity, entry/scenario prices and dollar costs. |
+| `search_research` | Finds published studies with stable article IDs and citation URLs. |
+| `get_research_article` | Reads a complete published article and its sources. |
+| `get_research_dataset` | Retrieves published tables, units, observation context and CSV/JSON downloads. |
 
-The [research access page](https://vultax.com/research-access) also provides Markdown articles, JSON/CSV exports and the [Atom feed](https://vultax.com/feed.xml). The included n8n workflow imports the public feed on manual request, without credentials or automatic messaging.
+Snapshots may be delayed. Provider metadata updates are not quote timestamps. Scenarios are arithmetic, with no forecast, backtest, market depth, slippage or execution. Published studies are historical. The public extension cannot access private accounts or create trades, alerts, bots or paper positions. It is a public Vi companion; the full authenticated Vi app has a separate access boundary.
 
-The public GitHub release is available independently of marketplace review. It does not imply acceptance into OpenAI's or Anthropic's curated directory.
+## Install in your assistant
 
-## MCP Registry
+### Codex
 
-Vultax Research is published in the [official MCP Registry](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.ChristopherZYX%2Fvultax-research/versions/latest) as `io.github.ChristopherZYX/vultax-research`. The entry points to the same public HTTPS service. Registry inclusion makes the connection metadata available to clients and aggregators; it does not automatically install the plugin in anyone's account.
-
-Maintainers can publish a new metadata version through the manually triggered **Publish Vultax to MCP Registry** GitHub workflow. It uses GitHub OIDC and a pinned, checksum-verified official publisher. Update `server.json` before publishing a new version.
-
-## Validation
-
-The MCP service runs on Vultax's infrastructure; users do not need to run a local server. The Node dependency below is for maintainers verifying the public endpoint:
+Install this repository as a Codex plugin through a configured marketplace, or connect directly:
 
 ```sh
-npm ci
-npm run test:live
+codex mcp add vultax-research --url https://vultax.com/vi-mcp
 ```
 
-The validation script uses the official MCP SDK, calls all three tools, checks data provenance and non-live labels, verifies a downloadable dataset, and exercises invalid and out-of-scope requests. It saves a dated result in `evidence/live-validation.json`.
+Start a new task after installing. The native package includes `.codex-plugin/plugin.json` and two skills. Keep the existing `vultax-research` identifier when upgrading.
 
-## Data handling and terms
+### ChatGPT and Claude connectors
 
-Tool queries and selected article/dataset identifiers are sent to `vultax.com`. No account credentials or API keys are needed. The connection only accesses public research; avoid including private information in search queries. Vultax's [privacy policy](https://vultax.com/legal/privacy) and [terms](https://vultax.com/legal/terms) apply. Distribution packaging does not change the rights in Vultax's research, datasets or branding.
+Where your account supports custom MCP connectors, add **Vi Assistant by Vultax** with URL `https://vultax.com/vi-mcp` and no authentication. Custom connection availability depends on the client/account. A downloadable package or registry entry does not imply approval in a curated directory. See [publication status](submission/STATUS.md).
+
+### Claude Code marketplace
+
+```text
+/plugin marketplace add ChristopherZYX/vultax-research-plugin
+/plugin install vultax-research@vultax
+```
+
+Or use a direct MCP connection:
+
+```sh
+claude mcp add --transport http vultax-research https://vultax.com/vi-mcp
+```
+
+Use either the plugin or direct connection to avoid duplicate tools. This repository contains the native plugin and its self-hosted marketplace, not an Anthropic-endorsed listing. [Official marketplace instructions](https://code.claude.com/docs/en/plugin-marketplaces).
+
+### Claude Desktop bundle
+
+Download `vultax-vi-1.1.0.mcpb` from the release and open it in a compatible desktop client. The bundle includes the Node server and production dependencies; Node 20+ or the client's compatible bundled runtime is required. The local transport uses stdio and opens no listening port. Research queries go to Vultax; market lookups go to Polymarket. [MCP bundle specification](https://github.com/modelcontextprotocol/mcpb).
+
+### Gemini CLI extension
+
+```sh
+gemini extensions install https://github.com/ChristopherZYX/vultax-research-plugin --ref=v1.1.0
+```
+
+The root `gemini-extension.json` connects the same tools and includes `GEMINI.md` guidance. Gallery discovery requires the `gemini-cli-extension` topic and Google's crawler validation. [Official release instructions](https://geminicli.com/docs/extensions/releasing/).
+
+### Cursor, VS Code, Windsurf and OpenCode
+
+Merge the matching entry into the client's configuration, preserving existing servers:
+
+| Client | Configuration |
+| --- | --- |
+| Cursor | [connections/cursor.mcp.json](connections/cursor.mcp.json) → `.cursor/mcp.json` |
+| VS Code / GitHub Copilot | [connections/vscode.mcp.json](connections/vscode.mcp.json) → `.vscode/mcp.json`, or **MCP: Add Server** → HTTP |
+| Windsurf / Devin Desktop | [connections/windsurf.mcp.json](connections/windsurf.mcp.json) → `~/.codeium/windsurf/mcp_config.json` |
+| OpenCode | [connections/opencode.json](connections/opencode.json) → `opencode.json` |
+
+These are MCP connections, not VS Code Marketplace extensions. Configuration references: [Windsurf/Devin](https://docs.devin.ai/desktop/cascade/mcp), [OpenCode](https://opencode.ai/docs/mcp-servers/).
+
+### n8n and public feeds
+
+Import [the n8n workflow](connections/n8n-vultax-research-feed.json) to retrieve Vultax's public [Atom feed](https://vultax.com/feed.xml) on manual request. It sends no messages and needs no credentials. [Research access](https://vultax.com/research-access) also provides Markdown and downloadable datasets.
+
+## Try these workflows
+
+- “Inspect this Polymarket link. Show its rules, available evidence, source times and the matching Vultax workspace.”
+- “For 100 contracts bought at 0.50, calculate exits at 0.40 and 0.60 with $1 entry and $1 exit costs.”
+- “Find research on copying Polymarket traders. Explain the measured costs and study limitations.”
+
+The scenario example gives **−$12 and +$8**, with a break-even price of **0.52**. It is an illustration using explicit assumptions.
+
+## Run or reuse the tools
+
+```sh
+npm ci --ignore-scripts
+npm test
+npm start
+# Another terminal:
+npm run test:vi
+```
+
+The demo starts at `http://127.0.0.1:3147`. Set `VI_TEST_URL` to test the public endpoint. For a generic stdio client use `node /absolute/path/to/src/stdio.mjs` after installing dependencies. `npm run test:live` verifies the original research-only service.
+
+The reusable functions are [marketBrief](src/vi/market.mjs) and [probabilityScenario](src/vi/scenario.mjs). They return structured evidence/calculations without a model call. See [Vi integration notes](submission/VI-ASSISTANT.md) for reuse inside the authenticated app.
+
+## Data handling
+
+The hosted service receives only submitted tool arguments. Market identifiers are sent to Polymarket's public Gamma/Data APIs. Research queries and article IDs are sent to Vultax's public research MCP. Scenario arithmetic needs no external data provider. Do not include account links, credentials, private portfolios or unrelated conversation text. Fixed public-provider URLs, bounded response sizes, request timeouts, validation and request limits constrain the adapter.
+
+Vultax infrastructure may keep ordinary HTTP/security logs. The adapter adds no user accounts, database, query analytics or payment requirements. Workspace links use fixed `utm_source=vi_assistant` attribution, with no private questions in the URL. Operated by OmniOS OÜ: [about/support](https://vultax.com/about), [privacy](https://vultax.com/legal/privacy), [terms](https://vultax.com/legal/terms).
+
+The MIT license covers this original integration code and documentation. It does not grant rights to Vultax branding, published research or third-party market data.

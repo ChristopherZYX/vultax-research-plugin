@@ -1,0 +1,23 @@
+{
+  "name": "Vi Assistant by Vultax",
+  "publisher": "OmniOS OÜ",
+  "shortDescription": "Market evidence, explicit scenarios, and published research.",
+  "longDescription": "Inspect exact Polymarket links with resolution rules, outcome prices, reported liquidity and activity, source metadata and a matching Vultax workspace link. Calculate hypothetical price scenarios with explicit quantities and dollar costs. Search published Vultax studies and retrieve cited articles and datasets. Public snapshots may be delayed and studies are historical. No API key, private account access or trading actions.",
+  "websiteUrl": "https://vultax.com/vi-mcp",
+  "supportUrl": "https://vultax.com/about",
+  "privacyPolicyUrl": "https://vultax.com/legal/privacy",
+  "termsUrl": "https://vultax.com/legal/terms",
+  "mcp": {
+    "urlType": "Universal",
+    "serverUrl": "https://vultax.com/vi-mcp",
+    "transport": "streamable-http",
+    "authentication": "none",
+    "customUi": false
+  },
+  "starterPrompts": [
+    "Inspect this Polymarket link with Vi and show its rules and evidence.",
+    "For 100 contracts bought at 0.50, calculate exits at 0.40 and 0.60 with one dollar each in entry and exit costs.",
+    "Find Vultax research on Polymarket copy-trading costs."
+  ],
+  "releaseNotes": "Version 1.1 adds market inspection and pure scenario arithmetic to the three research tools. Public HTTP validation passed all ten checks. Source, native client packages and self-contained MCPB are available through the public repository. Curated directory approval remains separate."
+}

@@ -2,7 +2,7 @@
   "mcpServers": {
     "vultax-research": {
       "type": "http",
-      "url": "https://vultax.com/mcp"
+      "url": "https://vultax.com/vi-mcp"
     }
   }
 }

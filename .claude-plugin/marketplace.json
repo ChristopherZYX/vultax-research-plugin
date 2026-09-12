@@ -1,0 +1,6 @@
+{
+  "name": "vultax",
+  "owner": { "name": "OmniOS OÜ", "email": "support@vultax.com" },
+  "metadata": { "description": "Vi Assistant by Vultax public market research tools", "version": "1.1.0" },
+  "plugins": [{ "name": "vultax-research", "source": "./", "description": "Vi market briefs, scenario arithmetic and published research.", "version": "1.1.0" }]
+}

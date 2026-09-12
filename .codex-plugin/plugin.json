@@ -1,32 +1,39 @@
 {
   "name": "vultax-research",
-  "version": "1.0.0",
-  "description": "Search and cite published crypto and prediction-market research, then retrieve its tables and datasets.",
+  "version": "1.1.0",
+  "description": "Vi Assistant: inspect a prediction market, calculate hypothetical price scenarios, and cite Vultax research.",
   "author": {
-    "name": "OmniOS OÜ",
+    "name": "OmniOS O\u00dc",
     "url": "https://vultax.com/about"
   },
   "skills": "./skills/",
   "interface": {
-    "displayName": "Vultax Research",
-    "shortDescription": "Crypto and prediction-market studies with sources and data.",
-    "longDescription": "Find Vultax's published studies on Polymarket traders, copy-trading costs, market liquidity, exchange feed latency and trading activity. Read complete articles and retrieve published tables and charts with source URLs, dates, units, observation context and CSV/JSON downloads. Free public research; no account or API key required. Study snapshots and calculations are not live quotes or personalized investment advice. The plugin cannot access accounts or execute trades.",
-    "developerName": "OmniOS OÜ",
+    "displayName": "Vi Assistant by Vultax",
+    "shortDescription": "Market evidence, explicit scenarios, and published research.",
+    "longDescription": "Give Vi an exact Polymarket link to inspect resolution rules, outcome prices, spread, liquidity, volume and a bounded recent-trade sample with source timestamps and a matching Vultax workspace link. Calculate hypothetical price scenarios with explicit contract quantities and dollar costs. Search Vultax studies and retrieve articles and datasets with sources and observation context. Public snapshots may be delayed; research is historical. No API key, private account access or trade execution.",
+    "developerName": "OmniOS O\u00dc",
     "category": "Productivity",
     "capabilities": [],
     "defaultPrompt": [
-      "Find Vultax research on Polymarket copy-trading costs.",
-      "Compare the evidence on profitable trader persistence.",
-      "Get the published exchange feed-latency dataset."
+      "Inspect this Polymarket link with Vi and show its rules and evidence.",
+      "For 100 contracts bought at 0.50, calculate exits at 0.40 and 0.60 with one dollar each in entry and exit costs.",
+      "Find Vultax research on Polymarket copy-trading costs."
     ],
-    "websiteURL": "https://vultax.com/research-access",
+    "websiteURL": "https://vultax.com/vi-mcp",
     "privacyPolicyURL": "https://vultax.com/legal/privacy",
     "termsOfServiceURL": "https://vultax.com/legal/terms",
     "composerIcon": "./assets/icon.png",
     "logo": "./assets/logo.png"
   },
-  "homepage": "https://vultax.com/research-access",
+  "homepage": "https://vultax.com/vi-mcp",
   "repository": "https://github.com/ChristopherZYX/vultax-research-plugin",
-  "keywords": ["research", "prediction-markets", "crypto", "polymarket", "datasets", "market-microstructure"],
+  "keywords": [
+    "research",
+    "prediction-markets",
+    "crypto",
+    "polymarket",
+    "datasets",
+    "market-microstructure"
+  ],
   "mcpServers": "./.mcp.json"
 }

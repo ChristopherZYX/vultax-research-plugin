@@ -5,7 +5,7 @@ description: Search Vultax's published crypto and prediction-market studies, exp
 
 # Vultax market research
 
-Use the Vultax research MCP connection at `https://vultax.com/mcp`.
+Use the Vi Assistant MCP connection at `https://vultax.com/vi-mcp`. Its three published-research tools also remain available separately at `https://vultax.com/mcp`.
 
 1. Call `search_research` with a short topic or question. Use `limit` up to 10 and the returned `nextOffset` for another page when needed. Send only the research topic; omit private portfolio information and unrelated conversation text.
 2. Use an exact article `id` returned by search as `slug` in `get_research_article`. Read the article before making claims from its title or search summary.
